@@ -1,6 +1,26 @@
 <ion-content class="dashboard-content">
-  <div class="dashboard-header">
-    <h1>Welcome to RentPro</h1>
-    <p>Manage your properties and tenants easily</p>
+  <div class="dashboard-wrapper">
+    <ion-card class="profile-card">
+      <ion-avatar class="avatar">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-avatar>
+
+      <h2 class="username">{{ userName }}</h2>
+
+      <div class="profile-actions">
+        <ion-icon name="settings-outline" class="icon-btn" (click)="openSettings()"></ion-icon>
+        <ion-icon name="notifications-outline" class="icon-btn" (click)="openNotifications()"></ion-icon>
+        <ion-icon name="log-out-outline" class="icon-btn logout" (click)="logout()"></ion-icon>
+      </div>
+    </ion-card>
+
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-title>Welcome to RentPro</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Manage your properties, tenants, and contracts efficiently — all in one place.
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

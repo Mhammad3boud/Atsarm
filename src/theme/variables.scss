@@ -143,3 +143,20 @@ ion-button {
   font-weight: normal;
   --box-shadow: none !important;
 }
+
+ion-tab-bar {
+  --background: var(--ion-toolbar-background);
+  --color: var(--ion-text-color);
+  --color-selected: var(--ion-color-primary);
+  border-radius: 15px 15px 0 0;
+  box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
+}
+
+ion-tab-button {
+  --background: var(--ion-toolbar-background);
+  --color: var(--ion-text-color);
+  --color-selected: var(--ion-color-primary);
+  border-radius: 15px 15px 0 0;
+  box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
+}
+

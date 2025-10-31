@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
         localStorage.setItem('rememberUser', this.username);
       }
       // Navigate to another page (e.g., dashboard)
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/tabs/dashboard']);
     } else {
       const alert = await this.alertController.create({
         header: 'Login Failed',
