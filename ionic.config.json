@@ -1,0 +1,7 @@
+{
+  "name": "rentpro",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
