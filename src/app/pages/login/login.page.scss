@@ -1,0 +1,95 @@
+/* ============================================================
+   LOGIN PAGE - FIXED CENTERED ALIGNMENT
+   ============================================================ */
+
+ion-content {
+  --background: var(--ion-background-color);
+  position: relative;
+  height: 100vh; /* ensures full viewport height */
+}
+
+.login-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* perfectly center */
+  width: 90%;
+  max-width: 380px;
+}
+
+.login-container {
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* Icon */
+.login-icon {
+  background: rgba(var(--ion-color-primary-rgb), 0.15);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+
+  ion-icon {
+    font-size: 2.5rem;
+    color: var(--ion-color-primary);
+  }
+}
+
+/* Input fields */
+ion-item.input-item {
+  --background: rgba(var(--ion-color-primary-rgb), 0.08);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+
+  ion-icon {
+    color: var(--ion-color-primary);
+  }
+
+  ion-input {
+    color: var(--ion-text-color);
+  }
+}
+
+/* Remember & Forgot Password */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--ion-text-color);
+  font-size: 0.9rem;
+  margin: 1rem 0 1.5rem 0;
+
+  .remember {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .forgot {
+    color: var(--ion-color-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+/* Button */
+ion-button.login-btn {
+  --background: var(--ion-color-primary);
+  --border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ion-color-primary-contrast);
+  box-shadow: 0 4px 15px rgba(var(--ion-color-primary-rgb), 0.4);
+  width: 100%;
+}
