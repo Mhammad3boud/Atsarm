@@ -1,26 +1,163 @@
-<ion-content class="dashboard-content">
+<ion-content>
+  <ion-refresher slot="fixed" pullMax="60" pullMin="60 " (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshing-spinner="dots" pullingIcon="refresh"></ion-refresher-content>
+  </ion-refresher>
+
   <div class="dashboard-wrapper">
     <ion-card class="profile-card">
-      <ion-avatar class="avatar">
-        <ion-icon name="person-circle-outline"></ion-icon>
-      </ion-avatar>
+      <ion-card-content>
 
-      <h2 class="username">{{ userName }}</h2>
+        <ion-row>
+          <ion-col size="12" class="profile-row">
+            <div class="profile-left" tappable="true" (click)="openProfile()">
+              <ion-avatar class="avatar">
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              </ion-avatar>
+              <div class="profile-text">
+                <ion-card-title class="profile-name" color="primary">{{userName}}</ion-card-title>
+                <ion-card-title class="profile-role" color="primary">{{role}}</ion-card-title>
+              </div>
+            </div>
 
-      <div class="profile-actions">
-        <ion-icon name="settings-outline" class="icon-btn" (click)="openSettings()"></ion-icon>
-        <ion-icon name="notifications-outline" class="icon-btn" (click)="openNotifications()"></ion-icon>
-        <ion-icon name="log-out-outline" class="icon-btn logout" (click)="logout()"></ion-icon>
-      </div>
+            <div class="profile-icons">
+              <ion-icon name="notifications-outline" class="icon-btn" (click)="openNotifications()">
+                <ion-badge>{{notificationCount}}</ion-badge>
+              </ion-icon>
+              <ion-icon name="settings-outline" class="icon-btn" (click)="openSettings()"></ion-icon>
+              <ion-icon name="log-out-outline" class="icon-btn logout" (click)="logout()"></ion-icon>
+            </div>
+          </ion-col>
+
+        </ion-row>
+      </ion-card-content>
+
     </ion-card>
 
-    <ion-card class="welcome-card">
+    <!-- Quick Actions -->
+    <ion-card class="quick-actions">
       <ion-card-header>
-        <ion-card-title>Welcome to RentPro</ion-card-title>
+        <ion-card-title>Quick Actions</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        Manage your properties, tenants, and contracts efficiently — all in one place.
+        <ion-text color="medium">
+          <h2>Common tasks to help you manage properties efficiently</h2>
+        </ion-text>
+        <ion-grid>
+          <ion-row class="qa-row">
+            <ion-col size="12" size-md="4">
+              <div class="qa-tile tile-property" (click)="openSettings()" tappable="true">
+                <ion-icon name="business-outline" class="qa-icon"></ion-icon>
+                <div class="qa-text">
+                  <h3>Add New Property</h3>
+                  <p>Register a new asset in your portfolio</p>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col size="12" size-md="4">
+              <div class="qa-tile tile-tenant" (click)="openSettings()" tappable="true">
+                <ion-icon name="people-outline" class="qa-icon"></ion-icon>
+                <div class="qa-text">
+                  <h3>Add New Tenant</h3>
+                  <p>Register a new Tenant</p>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col size="12" size-md="4">
+              <div class="qa-tile tile-payment" (click)="openSettings()" tappable="true">
+                <ion-icon name="document-outline" class="qa-icon"></ion-icon>
+                <div class="qa-text">
+                  <h3>Record Payment</h3>
+                  <p>Log a rent payment</p>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
+
+    <!-- Recent Activities -->
+      <ion-row class="justify-cards">
+        <ion-col size="12" size-md="6" class="card-col">
+          <ion-card class="quick-actions">
+            <ion-card-header>
+              <ion-card-title>Recent Activities</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text color="medium">
+                <h2>Latest updates from your properties</h2>
+              </ion-text>
+              <ion-list lines="none" class="recent-list">
+                <ion-item>
+                  <ion-icon name="checkmark-circle" color="success" slot="start"></ion-icon>
+                  <ion-label>
+                    <h3>Rent payment received from Unit 2A</h3>
+                    <p>2 hours ago</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-icon name="ellipse-outline" color="primary" slot="start"></ion-icon>
+                  <ion-label>
+                    <h3>Maintenance request for Property #45</h3>
+                    <p>4 hours ago</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-icon name="checkmark-circle" color="success" slot="start"></ion-icon>
+                  <ion-label>
+                    <h3>New lease signed for Property #67</h3>
+                    <p>1 day ago</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-icon name="time-outline" color="warning" slot="start"></ion-icon>
+                  <ion-label>
+                    <h3>Rent overdue for Unit 5B</h3>
+                    <p>2 days ago</p>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12" size-md="6" class="card-col">
+          <ion-card class="quick-actions">
+            <ion-card-header>
+              <ion-card-title>Upcoming Reminders</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text color="medium">
+                <h2>Important dates and deadlines</h2>
+              </ion-text>
+              <ion-list lines="none" class="reminders-list">
+                <ion-item class="reminder">
+                  <ion-icon name="alert-circle-outline" color="warning" slot="start"></ion-icon>
+                  <ion-label>
+                    <h3>Lease Expiring Soon</h3>
+                    <p>Unit 3C lease expires in 30 days</p>
+                    <small class="date">2024-10-15</small>
+                  </ion-label>
+                </ion-item>
+                <ion-item class="reminder">
+                  <ion-icon name="build-outline" color="warning" slot="start"></ion-icon>
+                  <ion-label>
+                    <h3>Maintenance Scheduled</h3>
+                    <p>HVAC maintenance for Building A</p>
+                    <small class="date">2024-09-25</small>
+                  </ion-label>
+                </ion-item>
+                <ion-item class="reminder">
+                  <ion-icon name="cash-outline" color="warning" slot="start"></ion-icon>
+                  <ion-label>
+                    <h3>Rent Due</h3>
+                    <p>5 properties have rent due tomorrow</p>
+                    <small class="date">2024-09-20</small>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
   </div>
 </ion-content>

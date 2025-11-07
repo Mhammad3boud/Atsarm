@@ -1,13 +1,86 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>tenants</ion-title>
+    <ion-title>Tenant Management</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tenants</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="tenants-page">
+
+  <!-- HEADER -->
+  <div class="header-section">
+    <div>
+      <h1>Tenant Management</h1>
+      <p>Manage your tenants and lease information</p>
+    </div>
+
+    <ion-button color="success" shape="round" class="add-btn">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      Add Tenant
+    </ion-button>
+  </div>
+
+  <!-- SEARCH + FILTER -->
+  <div class="filter-section">
+    <div class="search-box">
+      <ion-icon name="search-outline"></ion-icon>
+      <input type="text" placeholder="Search by name, email, or property number..." [(ngModel)]="searchTerm"
+        (input)="filterTenants()" />
+    </div>
+
+    <div class="filter-box">
+      <ion-icon name="funnel-outline"></ion-icon>
+      <ion-select interface="popover" [(ngModel)]="selectedStatus" (ionChange)="filterTenants()">
+        <ion-select-option value="all">All Status</ion-select-option>
+        <ion-select-option value="Active">Active</ion-select-option>
+        <ion-select-option value="Expiring Soon">Expiring Soon</ion-select-option>
+      </ion-select>
+    </div>
+  </div>
+
+  <!-- TENANT CARDS -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="4" *ngFor="let tenant of filteredTenants">
+        <ion-card>
+          <ion-card-header>
+            <div class="card-header">
+              <div class="tenant-info">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <div>
+                  <h2>{{ tenant.name }}</h2>
+                  <p>{{ tenant.unit }}</p>
+                </div>
+              </div>
+
+              <ion-badge [color]="tenant.status === 'Active' ? 'success' : 'warning'" class="status-badge">
+                {{ tenant.status }}
+              </ion-badge>
+            </div>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p><ion-icon name="mail-outline"></ion-icon> {{ tenant.email }}</p>
+            <p><ion-icon name="call-outline"></ion-icon> {{ tenant.phone }}</p>
+            <p><ion-icon name="location-outline"></ion-icon> {{ tenant.property }}</p>
+
+            <hr />
+
+            <p><strong>Monthly Rent:</strong> ${{ tenant.rent }}</p>
+            <p><strong>Lease End:</strong> {{ tenant.leaseEnd }}</p>
+            <p><strong>Emergency:</strong> {{ tenant.emergency }}</p>
+
+            <div class="card-actions">
+              <ion-button size="small" fill="outline" color="medium">
+                <ion-icon slot="start" name="create-outline"></ion-icon>Edit
+              </ion-button>
+              <ion-button size="small" fill="outline" color="danger">
+                <ion-icon slot="start" name="trash-outline"></ion-icon>Remove
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

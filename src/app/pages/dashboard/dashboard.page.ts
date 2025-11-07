@@ -10,6 +10,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class DashboardPage implements OnInit {
   userName: string = 'MOHAMMED ABOUD HUSSEIN';
+  role: string = 'Owner';
+  notificationCount: number = 2;
 
   constructor(
     private router: Router,
@@ -37,10 +39,21 @@ export class DashboardPage implements OnInit {
   }
 
   openSettings() {
-    console.log('Settings clicked');
+    this.router.navigate(['/settings']);
   }
 
   openNotifications() {
-    console.log('Notifications clicked');
+    this.router.navigate(['/notifications']);
   }
+  doRefresh(event:any){     
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    });
+  }
+  openProfile() {
+    console.log('Profile clicked');
+  } 
+  
 }
+

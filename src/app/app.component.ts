@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    document.body.classList.remove('dark');
+    document.body.classList.add('light');
+  }
+
 }

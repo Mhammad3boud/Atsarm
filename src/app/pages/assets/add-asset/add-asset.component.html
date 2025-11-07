@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add New Asset</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="close()">✕</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p>Enter the details of the new asset</p>
+
+  <ion-grid>
+    <ion-row>
+      <!-- Asset Type / Region -->
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Asset Type</ion-label>
+          <ion-select interface="popover" [(ngModel)]="asset.assetType">
+            <ion-select-option value="Property">Property</ion-select-option>
+            <ion-select-option value="Farm">Farm</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Region</ion-label>
+          <ion-input placeholder="Enter region" [(ngModel)]="asset.region"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- District / Ward -->
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">District</ion-label>
+          <ion-input placeholder="Enter district" [(ngModel)]="asset.district"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Ward</ion-label>
+          <ion-input placeholder="Enter ward" [(ngModel)]="asset.ward"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- Block / Plot -->
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Block No.</ion-label>
+          <ion-input placeholder="Enter block number" [(ngModel)]="asset.blockNo"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Plot No.</ion-label>
+          <ion-input placeholder="Enter plot number" [(ngModel)]="asset.plotNo"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- House / Street -->
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">House No.</ion-label>
+          <ion-input placeholder="Enter house number" [(ngModel)]="asset.houseNo"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Street</ion-label>
+          <ion-input placeholder="Enter street name" [(ngModel)]="asset.street"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- Postcode / Area -->
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Postcode</ion-label>
+          <ion-input placeholder="Enter postcode" [(ngModel)]="asset.postcode"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Area Name</ion-label>
+          <ion-input placeholder="Enter area name" [(ngModel)]="asset.areaName"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- Owner -->
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Owner Name</ion-label>
+          <ion-input placeholder="Enter owner name" [(ngModel)]="asset.ownerName"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Owner Phone</ion-label>
+          <ion-input placeholder="Enter phone number" [(ngModel)]="asset.ownerPhone"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- Email -->
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="stacked">Owner Email</ion-label>
+          <ion-input placeholder="Enter email address" [(ngModel)]="asset.ownerEmail"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- Usage / Water Meter -->
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Usage</ion-label>
+          <ion-select interface="popover" [(ngModel)]="asset.usage">
+            <ion-select-option value="Rented">Rented</ion-select-option>
+            <ion-select-option value="Personal Use">Personal Use</ion-select-option>
+            <ion-select-option value="Business">Business</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Water Meter</ion-label>
+          <ion-input placeholder="Enter water meter number" [(ngModel)]="asset.waterMeter"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- Electricity / GPS -->
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">Electricity Meter</ion-label>
+          <ion-input placeholder="Enter electricity meter number" [(ngModel)]="asset.electricityMeter"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">GPS Latitude</ion-label>
+          <ion-input placeholder="Enter latitude" [(ngModel)]="asset.gpsLatitude"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-item>
+          <ion-label position="stacked">GPS Longitude</ion-label>
+          <ion-input placeholder="Enter longitude" [(ngModel)]="asset.gpsLongitude"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="ion-text-right ion-margin-top">
+    <ion-button fill="clear" color="medium" (click)="close()">Cancel</ion-button>
+    <ion-button color="success" (click)="addAsset()">Add Asset</ion-button>
+  </div>
+</ion-content>

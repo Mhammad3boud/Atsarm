@@ -1,0 +1,28 @@
+ion-header {
+  --background: #fff;
+  --color: #000;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+ion-content {
+  max-height: 80vh;
+  overflow-y: auto;
+  background: #f6f8f9;
+}
+
+ion-item {
+  --background: #fff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+ion-grid {
+  --ion-grid-column-padding: 8px;
+}

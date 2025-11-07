@@ -1,0 +1,143 @@
+.contracts-page {
+  background: #f6f6f6;
+
+  /* HEADER */
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem;
+    flex-wrap: wrap;
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    p {
+      color: #666;
+      margin: 0.3rem 0 0;
+    }
+
+    .generate-btn {
+      --background: #157347;
+      --color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+  }
+
+  /* SEARCH */
+  .search-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    margin: 0 1.5rem 1.5rem;
+
+    ion-icon {
+      color: #555;
+      font-size: 20px;
+    }
+
+    input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 0.95rem;
+      background: transparent;
+    }
+  }
+
+  /* CARDS */
+  ion-card {
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #fff;
+
+    ion-card-header {
+      padding-bottom: 0;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .contract-title {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+
+        ion-icon {
+          font-size: 2rem;
+          color: #b28ef6;
+        }
+
+        h2 {
+          font-size: 1.05rem;
+          font-weight: 600;
+          margin: 0;
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.9rem;
+          color: #666;
+        }
+      }
+
+      .status-badge {
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+    }
+
+    ion-card-content {
+      p {
+        margin: 0.4rem 0;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        ion-icon {
+          color: #6c757d;
+          font-size: 16px;
+        }
+      }
+
+      hr {
+        margin: 0.8rem 0;
+        border: none;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 0.6rem;
+        margin-top: 0.8rem;
+
+        ion-button {
+          --border-radius: 8px;
+          --padding-start: 10px;
+          --padding-end: 10px;
+          font-weight: 500;
+        }
+
+        ion-button[color="medium"][fill="outline"] {
+          --border-color: #b28ef6;
+          --color: #b28ef6;
+        }
+      }
+    }
+  }
+}

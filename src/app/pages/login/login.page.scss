@@ -1,18 +1,12 @@
-/* ============================================================
-   LOGIN PAGE - FIXED CENTERED ALIGNMENT
-   ============================================================ */
-
 ion-content {
   --background: var(--ion-background-color);
-  position: relative;
-  height: 100vh; /* ensures full viewport height */
 }
 
 .login-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* perfectly center */
+  transform: translate(-50%, -50%);
   width: 90%;
   max-width: 380px;
 }
@@ -20,7 +14,7 @@ ion-content {
 .login-container {
   padding: 2rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.05);
+  // background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.15);

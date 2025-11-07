@@ -1,17 +1,21 @@
-
 @mixin light-theme {
+
   .md,
   .ios {
-    --ion-background-color: #f8f8f8;
+    --ion-background-color: #EBEBEB;
     --ion-background-color-rgb: 248, 248, 248;
     --ion-text-color: #000000;
     --ion-text-color-rgb: 0, 0, 0;
-    --ion-toolbar-background: #ffffff;
+    --ion-toolbar-background: #EBEBEB;
     --ion-tab-bar-background: #ffffff;
     --ion-tab-bar-color: var(--ion-text-color);
     --ion-border-color: #dadada;
     --ion-item-background: #ffffff;
     --ion-shadow: #f3f3f3;
+    --ion-card-background: #ffffff;
+    --ion-input-background: #ffffff;
+    --ion-input-color: #000000;
+    --ion-input-placeholder-color: #666666;
 
     --ion-color-step-50: #f3f3f3;
     --ion-color-step-100: #e8e8e8;
@@ -56,6 +60,7 @@
 //  DARK THEME
 // ------------------------------------------------------------
 @mixin dark-theme {
+
   .md,
   .ios {
     --ion-background-color: #000000;
@@ -67,6 +72,10 @@
     --ion-toolbar-background: #191919;
     --ion-tab-bar-background: #191919;
     --ion-shadow: #0a0a0a;
+    --ion-card-background: #191919;
+    --ion-input-background: #191919;
+    --ion-input-color: #ffffff;
+    --ion-input-placeholder-color: #666666;
 
     --ion-color-step-50: #1e1e1e;
     --ion-color-step-100: #2a2a2a;
@@ -110,7 +119,8 @@
   @include light-theme;
 }
 
-@media (prefers-color-scheme: no-preference), (prefers-color-scheme: light) {
+@media (prefers-color-scheme: no-preference),
+(prefers-color-scheme: light) {
   :root {
     @include light-theme;
   }
@@ -131,32 +141,41 @@
 }
 
 ion-card {
-  border-radius: 15px !important;
+  --background: var(--ion-item-background) !important;
+  --color: var(--ion-text-color) !important;
+  border-radius: 10px !important;
   box-shadow: rgb(0 0 0 / 6%) 0 3px 1px -2px,
-              rgb(0 0 0 / 6%) 0 2px 2px 0,
-              rgb(0 0 0 / 6%) 0 1px 5px 0 !important;
+    rgb(0 0 0 / 6%) 0 2px 2px 0,
+    rgb(0 0 0 / 6%) 0 1px 5px 0 !important;
+    
 }
 
 ion-button {
-  text-transform: capitalize !important;
-  --border-radius: 10px !important;
+  --border-radius: 10px;
   font-weight: normal;
-  --box-shadow: none !important;
 }
 
 ion-tab-bar {
   --background: var(--ion-toolbar-background);
   --color: var(--ion-text-color);
   --color-selected: var(--ion-color-primary);
-  border-radius: 15px 15px 0 0;
-  box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
 }
 
 ion-tab-button {
   --background: var(--ion-toolbar-background);
   --color: var(--ion-text-color);
   --color-selected: var(--ion-color-primary);
-  border-radius: 15px 15px 0 0;
-  box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
 }
 
+ion-refresher {
+  background: var(--ion-background-color) !important;
+
+  ion-refresher-content {
+    background: var(--ion-background-color) !important;
+    --spinner-color: var(--ion-color-primary);
+
+    ion-icon {
+      color: var(--ion-color-primary);
+    }
+  }
+}

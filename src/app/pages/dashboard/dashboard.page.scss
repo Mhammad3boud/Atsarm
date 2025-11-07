@@ -1,64 +1,24 @@
-.dashboard-content {
-  --background: var(--ion-background-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  min-height: 100vh;
-}
-
 .dashboard-wrapper {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  padding: 1rem;
+  gap: 2px;
+  padding: 2px;
 }
 
 .profile-card,
-.welcome-card {
-  width: 100%;
-  margin: 0;
-  border-radius: 0;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
-  transition: none;
+.quick-actions {
+  // keep cards consistent with theme card background
+  background: var(--ion-item-background) !important;
+  border: none;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .profile-card {
   text-align: center;
-  padding: 2.5rem 0;
 }
 
-.avatar {
-  width: 110px;
-  height: 110px;
-  margin: 0 auto 0.8rem auto;
-
-  ion-icon {
-    font-size: 110px;
-    color: var(--ion-color-primary);
-    filter: drop-shadow(0 0 8px rgba(var(--ion-color-primary-rgb), 0.4));
-  }
-}
-
-.username {
-  font-size: 1.3rem;
-  font-weight: 400;
-  color: var(--ion-color-primary);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.profile-actions {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-}
-
+ 
 .icon-btn {
   font-size: 1.9rem;
   color: var(--ion-text-color);
@@ -75,20 +35,259 @@
   color: var(--ion-color-danger);
 }
 
-.welcome-card {
-  padding: 1.3rem 1.5rem;
+.quick-actions {
 
   ion-card-title {
     font-size: 1.2rem;
     font-weight: 400;
     color: var(--ion-color-primary);
-    margin-bottom: 0.4rem;
   }
 
   ion-card-content {
     color: var(--ion-text-color);
-    opacity: 0.85;
     font-weight: 400;
     font-size: 0.95rem;
   }
 }
+
+/* Quick Actions tiles */
+.qa-row {
+  align-items: stretch;
+  // column-gap: 5px;
+  row-gap: 16px;
+  margin-top: 8px;
+}
+
+.qa-tile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--ion-item-background);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+
+  .qa-icon {
+    font-size: 28px;
+  }
+
+  .qa-text {
+    h3 { margin: 0 0 4px 0; font-weight: 700; }
+    p  { margin: 0; font-size: 0.9rem; color: var(--ion-color-medium); }
+  }
+}
+
+/* Colored variants to match sample */
+.tile-property {
+  background: rgba(76, 175, 80, 0.15); /* green tint */
+  .qa-icon, .qa-text h3 { color: #2e7d32; }
+}
+
+.tile-tenant {
+  background: rgba(33, 150, 243, 0.15); /* blue tint */
+  .qa-icon, .qa-text h3 { color: #1565c0; }
+}
+
+.tile-payment {
+  background: rgba(255, 152, 0, 0.15); /* orange tint */
+  .qa-icon, .qa-text h3 { color: #ef6c00; }
+}
+
+@media (max-width: 767px) {
+  .qa-tile { padding: 14px; }
+  .qa-tile .qa-icon { font-size: 24px; }
+}
+
+ion-card {
+  padding: 5px;
+}
+
+.profile-card {
+  .profile-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .profile-left {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    min-width: 0; /* allow inner text to shrink */
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+    border: 2px solid var(--ion-color-primary);
+    padding: 3px;
+    border-radius: 50%;
+
+    &:hover {
+      padding: 1px;
+    }
+  }
+
+  .profile-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 3;
+    text-align: left;
+  }
+
+  .profile-name,
+  .profile-role {
+    text-align: left;
+    margin: 0;
+  }
+
+  .profile-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto;
+  }
+
+  .profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+
+    .profile-title {
+      margin-right: auto;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      transition: 0.5s all;
+      border: 2px solid var(--ion-color-primary);
+      padding: 3px;
+
+      &:hover {
+        padding: 1px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .profile-card {
+    margin: 1rem 0 0 0 !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile-card {
+    background: var(--ion-item-background);
+    margin: 1rem;
+
+    .profile-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto; /* avatar | text | icons */
+      align-items: center;
+      column-gap: 8px;
+      width: 100%;
+    }
+
+    .profile-left {
+      display: contents; /* use grid columns from parent: avatar, text */
+    }
+
+    .profile-icons {
+      margin-left: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+    }
+
+    .profile-text { min-width: 0; }
+    .profile-name { font-size: 0.98rem; line-height: 1.15; margin: 0; }
+    .profile-role { font-size: 0.88rem; }
+
+    .profile-container {
+      flex-direction: column;
+
+      .profile-title {
+        margin: 5px;
+        text-align: center;
+
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .profile-card {
+    box-shadow: none;
+  }
+}
+
+ion-row.justify-cards {
+  align-items: center;
+}
+
+.card-col {
+  display: flex;
+}
+
+.card-col ion-card {
+  width: 100%;
+  height: 100%;
+}
+
+/* Lists inside Recent Activities and Upcoming Reminders */
+.recent-list,
+.reminders-list {
+  background: transparent !important;
+  --background: transparent;
+  --ion-item-background: transparent;
+  margin-top: 8px;
+
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --min-height: 44px;
+    --background: transparent;
+    --ion-item-background: transparent;
+    background: transparent !important;
+  }
+
+  h3 {
+    margin: 0 0 2px 0;
+    font-weight: 600;
+    color: var(--ion-text-color);
+  }
+
+  p {
+    margin: 0;
+    color: var(--ion-color-medium);
+    font-size: 0.85rem;
+  }
+
+  .date {
+    display: inline-block;
+    margin-top: 4px;
+    color: var(--ion-color-medium);
+  }
+}
+

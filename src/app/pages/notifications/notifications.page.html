@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Notifications</ion-title>
+
+    <ion-buttons slot="end" *ngIf="notifications.length > 0">
+      <ion-button (click)="clearAll()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="notifications.length > 0; else noNotifications">
+    <div class="notif-stack">
+      <ion-card *ngFor="let notif of notifications" [class.read]="notif.read" (click)="toggleRead(notif)" role="button" tabindex="0">
+        <ion-card-header>
+          <ion-card-title>
+            {{ notif.title }}
+            <ion-badge color="primary" *ngIf="!notif.read" class="unread-badge">Unread</ion-badge>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{ notif.message }}</p>
+          <small>{{ notif.time }}</small>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ng-container>
+
+  <ng-template #noNotifications>
+    <div class="empty-state">
+      <ion-icon name="notifications-off-outline"></ion-icon>
+      <p>No notifications yet</p>
+    </div>
+  </ng-template>
+</ion-content>

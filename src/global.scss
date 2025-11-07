@@ -35,3 +35,13 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Custom modal sizing for Add Asset */
+ion-modal.custom-asset-modal {
+  --width: 92vw;
+  --max-width: 760px;
+  --height: 90vh;
+  --max-height: 90vh;
+  --border-radius: 12px;
+  --box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}

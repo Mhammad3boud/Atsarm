@@ -1,13 +1,142 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>rent-tracking</ion-title>
+    <ion-title>Rent Tracking</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">rent-tracking</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="rent-page">
+
+  <!-- HEADER -->
+  <div class="header-section">
+    <div>
+      <h1>Rent Tracking</h1>
+      <p>Monitor rent payments and collection</p>
+    </div>
+
+    <ion-button color="success" shape="round" class="record-btn">
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      Record Payment
+    </ion-button>
+  </div>
+
+  <!-- SUMMARY CARDS -->
+  <div class="summary-cards">
+    <div class="card" id="total">
+      <h3>Total Revenue</h3>
+      <h2>$2,700</h2>
+      <p>Collected this period</p>
+    </div>
+    <div class="card" id="pending">
+      <h3>Pending Amount</h3>
+      <h2>$1,200</h2>
+      <p>Awaiting payment</p>
+    </div>
+    <div class="card" id="overdue">
+      <h3>Overdue Amount</h3>
+      <h2>$1,100</h2>
+      <p>Requires attention</p>
+    </div>
+    <div class="card" id="active">
+      <h3>Active Properties</h3>
+      <h2>3</h2>
+      <p>Generating revenue</p>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-section">
+    <div class="search-box">
+      <ion-icon name="search-outline"></ion-icon>
+      <input
+        type="text"
+        placeholder="Search by tenant name, property, or unit..."
+        [(ngModel)]="searchTerm"
+        (input)="filterRecords()"
+      />
+    </div>
+
+    <div class="filter-controls">
+      <div class="filter-box">
+        <ion-icon name="funnel-outline"></ion-icon>
+        <ion-select interface="popover" [(ngModel)]="selectedStatus" (ionChange)="filterRecords()">
+          <ion-select-option value="all">All Status</ion-select-option>
+          <ion-select-option value="Paid">Paid</ion-select-option>
+          <ion-select-option value="Pending">Pending</ion-select-option>
+          <ion-select-option value="Overdue">Overdue</ion-select-option>
+        </ion-select>
+      </div>
+
+      <div class="filter-box">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-select interface="popover" [(ngModel)]="selectedMonth" (ionChange)="filterRecords()">
+          <ion-select-option value="all">All Months</ion-select-option>
+          <ion-select-option value="2024-09">September 2024</ion-select-option>
+          <ion-select-option value="2024-10">October 2024</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-section">
+    <h3>Rent Payment Records</h3>
+    <p>Track and manage all rent payments</p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Tenant</th>
+            <th>Property/Unit</th>
+            <th>Month</th>
+            <th>Due Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Paid Date</th>
+            <th>Method</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of filteredRecords">
+            <td>{{ record.tenant }}</td>
+            <td>{{ record.property }}</td>
+            <td>{{ record.month }}</td>
+            <td>{{ record.dueDate }}</td>
+            <td>${{ record.amount }}</td>
+            <td>
+              <ion-badge [color]="getStatusColor(record.status)">
+                <ion-icon
+                  *ngIf="record.status === 'Paid'"
+                  name="checkmark-circle-outline"
+                ></ion-icon>
+                <ion-icon
+                  *ngIf="record.status === 'Overdue'"
+                  name="alert-circle-outline"
+                ></ion-icon>
+                <ion-icon
+                  *ngIf="record.status === 'Pending'"
+                  name="time-outline"
+                ></ion-icon>
+                {{ record.status }}
+              </ion-badge>
+            </td>
+            <td>{{ record.paidDate || '-' }}</td>
+            <td>{{ record.method || '-' }}</td>
+            <td>
+              <ion-button
+                *ngIf="record.status !== 'Paid'"
+                fill="outline"
+                color="success"
+                size="small"
+              >
+                Mark Paid
+              </ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </ion-content>
