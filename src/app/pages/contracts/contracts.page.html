@@ -13,7 +13,7 @@
       <p>Generate and manage lease contracts</p>
     </div>
 
-    <ion-button color="success" shape="round" class="generate-btn">
+    <ion-button color="success" shape="round" class="generate-btn" (click)="openGenerateContractModal()">
       <ion-icon slot="start" name="add-outline"></ion-icon>
       Generate Contract
     </ion-button>
@@ -74,11 +74,14 @@
             <p><strong>Generated:</strong> {{ contract.generated }}</p>
 
             <div class="card-actions">
-              <ion-button size="small" fill="outline" color="medium">
+              <ion-button size="small" fill="outline" color="medium" (click)="downloadPdf(contract)">
                 <ion-icon slot="start" name="download-outline"></ion-icon> PDF
               </ion-button>
-              <ion-button size="small" fill="outline" color="dark">
+              <ion-button size="small" fill="outline" color="dark" (click)="editContract(contract)">
                 <ion-icon slot="start" name="create-outline"></ion-icon> Edit
+              </ion-button>
+              <ion-button size="small" fill="outline" color="danger" (click)="confirmDelete(contract)">
+                <ion-icon slot="start" name="trash-outline"></ion-icon> Delete
               </ion-button>
             </div>
           </ion-card-content>

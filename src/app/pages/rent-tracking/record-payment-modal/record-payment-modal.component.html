@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Record Rent Payment</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">✕</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p>Add a new rent payment record</p>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Tenant Name</ion-label>
+          <ion-input [(ngModel)]="payment.tenantName" placeholder="Enter tenant name"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="stacked">Property Number</ion-label>
+          <ion-input [(ngModel)]="payment.propertyNumber" placeholder="P-123"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="stacked">Unit Number</ion-label>
+          <ion-input [(ngModel)]="payment.unitNumber" placeholder="2A"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="stacked">Month</ion-label>
+          <ion-datetime presentation="month-year" [(ngModel)]="payment.month"></ion-datetime>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="stacked">Amount ($)</ion-label>
+          <ion-input type="number" [(ngModel)]="payment.amount" placeholder="1200"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="stacked">Due Date</ion-label>
+          <ion-datetime presentation="date" [(ngModel)]="payment.dueDate"></ion-datetime>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="stacked">Paid Date (Optional)</ion-label>
+          <ion-datetime presentation="date" [(ngModel)]="payment.paidDate"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Payment Method</ion-label>
+          <ion-select placeholder="Select payment method" [(ngModel)]="payment.paymentMethod">
+            <ion-select-option value="Bank Transfer">Bank Transfer</ion-select-option>
+            <ion-select-option value="Cash">Cash</ion-select-option>
+            <ion-select-option value="Check">Check</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row class="ion-justify-content-end ion-padding-top">
+    <ion-button fill="clear" (click)="cancel()">Cancel</ion-button>
+    <ion-button color="success" (click)="addPayment()">Add Payment</ion-button>
+  </ion-row>
+</ion-content>

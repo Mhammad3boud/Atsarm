@@ -1,0 +1,19 @@
+ion-content {
+  --background: #fff;
+
+  p {
+    color: #555;
+    margin-bottom: 1rem;
+  }
+
+  ion-item {
+    --background: #f8f8f8;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+
+  ion-button[color="success"] {
+    --background: #0a7b59;
+    --color: #fff;
+  }
+}

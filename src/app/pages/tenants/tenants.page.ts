@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController, AlertController, ToastController } from '@ionic/angular';
+import { AddTenantModalComponent } from './add-tenant-modal/add-tenant-modal.component';
 
 interface Tenant {
   name: string;
@@ -70,6 +72,12 @@ export class TenantsPage implements OnInit {
   searchTerm = '';
   selectedStatus = 'all';
 
+  constructor(
+    private modalCtrl: ModalController,
+    private alertController: AlertController,
+    private toastController: ToastController,
+  ) {}
+
   ngOnInit() {
     this.filteredTenants = [...this.tenants];
   }
@@ -87,5 +95,106 @@ export class TenantsPage implements OnInit {
 
       return matchesSearch && matchesStatus;
     });
+  }
+
+  // 🔹 Function to open Add Tenant Modal
+  async openAddTenantModal() {
+    const modal = await this.modalCtrl.create({
+      component: AddTenantModalComponent,
+      cssClass: 'centered-modal', // optional - for desktop style center popup
+      backdropDismiss: false,
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+      // Add new tenant to the list dynamically
+      const newTenant: Tenant = {
+        name: data.fullName,
+        unit: data.unitNumber,
+        email: data.email,
+        phone: data.phoneNumber,
+        property: data.propertyNumber,
+        rent: parseFloat(data.monthlyRent),
+        leaseEnd: data.leaseEnd,
+        emergency: data.emergencyContact,
+        status: 'Active',
+      };
+      this.tenants.push(newTenant);
+      this.filteredTenants = [...this.tenants];
+    }
+  }
+
+  async editTenant(tenant: Tenant) {
+    const componentProps = {
+      tenant: {
+        fullName: tenant.name,
+        email: tenant.email,
+        phoneNumber: tenant.phone,
+        propertyNumber: tenant.property,
+        unitNumber: tenant.unit,
+        monthlyRent: tenant.rent?.toString?.() ?? `${tenant.rent}`,
+        leaseStart: '',
+        leaseEnd: tenant.leaseEnd,
+        renewalReminder: '',
+        emergencyContact: tenant.emergency,
+        address: ''
+      }
+    } as any;
+
+    const modal = await this.modalCtrl.create({
+      component: AddTenantModalComponent,
+      componentProps,
+      cssClass: 'centered-modal',
+      backdropDismiss: false,
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+      const updated: Tenant = {
+        ...tenant,
+        name: data.fullName ?? tenant.name,
+        unit: data.unitNumber ?? tenant.unit,
+        email: data.email ?? tenant.email,
+        phone: data.phoneNumber ?? tenant.phone,
+        property: data.propertyNumber ?? tenant.property,
+        rent: parseFloat(data.monthlyRent ?? tenant.rent),
+        leaseEnd: data.leaseEnd ?? tenant.leaseEnd,
+        emergency: data.emergencyContact ?? tenant.emergency,
+        status: tenant.status,
+      };
+      this.tenants = this.tenants.map(t => (t === tenant ? updated : t));
+      this.filteredTenants = [...this.tenants];
+      this.presentToast('Tenant updated', 'success');
+    }
+  }
+
+  async confirmDeleteTenant(tenant: Tenant) {
+    const alert = await this.alertController.create({
+      header: 'Remove Tenant',
+      message: `Are you sure you want to remove ${tenant.name}?`,
+      buttons: [
+        { text: 'Cancel', role: 'cancel' },
+        { text: 'Remove', role: 'destructive', handler: () => this.deleteTenant(tenant) },
+      ],
+    });
+    await alert.present();
+  }
+
+  private deleteTenant(tenant: Tenant) {
+    this.tenants = this.tenants.filter(t => t !== tenant);
+    this.filteredTenants = [...this.tenants];
+    this.presentToast('Tenant removed', 'danger');
+  }
+
+  private async presentToast(message: string, color: 'success' | 'danger' | 'primary' | 'medium') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      color,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

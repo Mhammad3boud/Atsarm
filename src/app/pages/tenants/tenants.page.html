@@ -13,7 +13,7 @@
       <p>Manage your tenants and lease information</p>
     </div>
 
-    <ion-button color="success" shape="round" class="add-btn">
+    <ion-button color="success" shape="round" class="add-btn" (click)="openAddTenantModal()">
       <ion-icon slot="start" name="add-outline"></ion-icon>
       Add Tenant
     </ion-button>
@@ -70,10 +70,10 @@
             <p><strong>Emergency:</strong> {{ tenant.emergency }}</p>
 
             <div class="card-actions">
-              <ion-button size="small" fill="outline" color="medium">
+              <ion-button size="small" fill="outline" color="medium" (click)="editTenant(tenant)">
                 <ion-icon slot="start" name="create-outline"></ion-icon>Edit
               </ion-button>
-              <ion-button size="small" fill="outline" color="danger">
+              <ion-button size="small" fill="outline" color="danger" (click)="confirmDeleteTenant(tenant)">
                 <ion-icon slot="start" name="trash-outline"></ion-icon>Remove
               </ion-button>
             </div>

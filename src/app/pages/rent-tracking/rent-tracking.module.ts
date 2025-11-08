@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { RentTrackingPageRoutingModule } from './rent-tracking-routing.module';
 
 import { RentTrackingPage } from './rent-tracking.page';
+import { RecordPaymentModalComponent } from './record-payment-modal/record-payment-modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RentTrackingPageRoutingModule
+    RentTrackingPageRoutingModule,
+    RecordPaymentModalComponent
   ],
   declarations: [RentTrackingPage]
 })

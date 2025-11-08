@@ -15,7 +15,7 @@ export class DashboardPage implements OnInit {
 
   constructor(
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
   ) {}
 
   ngOnInit() {}
@@ -55,5 +55,16 @@ export class DashboardPage implements OnInit {
     console.log('Profile clicked');
   } 
   
+  async openAddProperty() {
+    this.router.navigate(['/tabs/assets']);
+  }
+
+  async openAddTenant() {
+    this.router.navigate(['/tabs/tenants']);
+  }
+
+  async openRecordPayment() {
+    this.router.navigate(['/tabs/contracts']);
+  }
 }
 

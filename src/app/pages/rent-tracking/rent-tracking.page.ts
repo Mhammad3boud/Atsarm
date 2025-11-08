@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController, AlertController, ToastController } from '@ionic/angular';
+import { RecordPaymentModalComponent } from './record-payment-modal/record-payment-modal.component';
 
 interface RentRecord {
   tenant: string;
@@ -62,6 +64,12 @@ export class RentTrackingPage implements OnInit {
   selectedStatus = 'all';
   selectedMonth = 'all';
 
+  constructor(
+    private modalCtrl: ModalController,
+    private alertController: AlertController,
+    private toastController: ToastController,
+  ) {}
+
   ngOnInit() {
     this.filteredRecords = [...this.records];
   }
@@ -91,5 +99,123 @@ export class RentTrackingPage implements OnInit {
       case 'Overdue': return 'danger';
       default: return 'medium';
     }
+  }
+
+  // ✅ New function: Open Record Payment Modal
+  async openRecordPaymentModal() {
+    const modal = await this.modalCtrl.create({
+      component: RecordPaymentModalComponent,
+      cssClass: 'centered-modal',
+      backdropDismiss: false,
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+      const newRecord: RentRecord = {
+        tenant: data.tenantName,
+        property: `${data.propertyNumber}/${data.unitNumber}`,
+        month: data.month,
+        dueDate: data.dueDate,
+        amount: parseFloat(data.amount),
+        paidDate: data.paidDate,
+        method: data.paymentMethod,
+        status: data.paidDate ? 'Paid' : 'Pending',
+      };
+
+      this.records.push(newRecord);
+      this.filteredRecords = [...this.records];
+    }
+  }
+
+  markPaid(record: RentRecord) {
+    const today = new Date().toISOString().slice(0, 10);
+    record.status = 'Paid';
+    record.paidDate = today;
+    if (!record.method || record.method === '-') {
+      record.method = 'Manual';
+    }
+    // Refresh the filtered view to reflect changes and status filters
+    this.filterRecords();
+  }
+
+  markUnpaid(record: RentRecord) {
+    record.status = 'Pending';
+    record.paidDate = '';
+    if (!record.method || record.method === 'Manual') {
+      record.method = '-';
+    }
+    this.filterRecords();
+    this.presentToast('Marked as unpaid', 'medium');
+  }
+
+  async editPayment(record: RentRecord) {
+    const { propertyNumber, unitNumber } = this.parseProperty(record.property);
+    const modal = await this.modalCtrl.create({
+      component: RecordPaymentModalComponent,
+      componentProps: {
+        preset: {
+          tenantName: record.tenant,
+          propertyNumber,
+          unitNumber,
+          month: record.month,
+          amount: String(record.amount ?? ''),
+          dueDate: record.dueDate,
+          paidDate: record.paidDate ?? '',
+          paymentMethod: record.method ?? '',
+        },
+      },
+      cssClass: 'centered-modal',
+      backdropDismiss: false,
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+      record.tenant = data.tenantName || record.tenant;
+      record.property = `${data.propertyNumber}/${data.unitNumber}`;
+      record.month = data.month || record.month;
+      record.dueDate = data.dueDate || record.dueDate;
+      record.amount = parseFloat(data.amount || record.amount);
+      record.paidDate = data.paidDate || '';
+      record.method = data.paymentMethod || '';
+      record.status = data.paidDate ? 'Paid' : record.status; // keep existing unless paid now
+      this.filterRecords();
+      this.presentToast('Payment updated', 'success');
+    }
+  }
+
+  async confirmDelete(record: RentRecord) {
+    const alert = await this.alertController.create({
+      header: 'Delete Payment',
+      message: `Remove payment record for ${record.tenant} (${record.month})?`,
+      buttons: [
+        { text: 'Cancel', role: 'cancel' },
+        { text: 'Delete', role: 'destructive', handler: () => this.deleteRecord(record) },
+      ],
+    });
+    await alert.present();
+  }
+
+  private deleteRecord(record: RentRecord) {
+    this.records = this.records.filter(r => r !== record);
+    this.filterRecords();
+    this.presentToast('Payment deleted', 'danger');
+  }
+
+  private parseProperty(prop: string): { propertyNumber: string; unitNumber: string } {
+    if (!prop) return { propertyNumber: '', unitNumber: '' };
+    const [propertyNumber = '', unitNumber = ''] = prop.split('/');
+    return { propertyNumber, unitNumber };
+  }
+
+  private async presentToast(message: string, color: 'success' | 'danger' | 'primary' | 'medium') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      color,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

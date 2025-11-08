@@ -13,7 +13,7 @@
       <p>Monitor rent payments and collection</p>
     </div>
 
-    <ion-button color="success" shape="round" class="record-btn">
+    <ion-button color="success" shape="round" class="record-btn" (click)="openRecordPaymentModal()">
       <ion-icon slot="start" name="add-outline"></ion-icon>
       Record Payment
     </ion-button>
@@ -124,14 +124,34 @@
             <td>{{ record.paidDate || '-' }}</td>
             <td>{{ record.method || '-' }}</td>
             <td>
-              <ion-button
-                *ngIf="record.status !== 'Paid'"
-                fill="outline"
-                color="success"
-                size="small"
-              >
-                Mark Paid
-              </ion-button>
+              <div class="actions">
+                <ion-button size="small" fill="outline" color="medium" (click)="editPayment(record)">
+                  <ion-icon slot="start" name="create-outline"></ion-icon>
+                  Edit
+                </ion-button>
+                <ion-button
+                  *ngIf="record.status === 'Paid'"
+                  fill="outline"
+                  color="warning"
+                  size="small"
+                  (click)="markUnpaid(record)"
+                >
+                  Unpaid
+                </ion-button>
+                <ion-button
+                  *ngIf="record.status !== 'Paid'"
+                  fill="outline"
+                  color="success"
+                  size="small"
+                  (click)="markPaid(record)"
+                >
+                  Mark Paid
+                </ion-button>
+                <ion-button size="small" fill="outline" color="danger" (click)="confirmDelete(record)">
+                  <ion-icon slot="start" name="trash-outline"></ion-icon>
+                  Delete
+                </ion-button>
+              </div>
             </td>
           </tr>
         </tbody>

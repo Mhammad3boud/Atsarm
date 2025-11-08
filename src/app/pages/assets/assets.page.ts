@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, ToastController } from '@ionic/angular';
 import { AddAssetComponent } from './add-asset/add-asset.component';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -61,6 +61,7 @@ export class AssetsPage implements OnInit {
     private router: Router,
     private modalController: ModalController,
     private alertController: AlertController,
+    private toastController: ToastController,
   ) {}
 
   ngOnInit() {
@@ -101,6 +102,7 @@ export class AssetsPage implements OnInit {
       };
       this.assets = this.assets.map(a => (a.id === asset.id ? updated : a));
       this.filterAssets();
+      this.presentToast('Asset updated', 'success');
     }
   }
 
@@ -119,6 +121,7 @@ export class AssetsPage implements OnInit {
   private deleteAsset(asset: Asset) {
     this.assets = this.assets.filter(a => a.id !== asset.id);
     this.filterAssets();
+    this.presentToast('Asset deleted', 'danger');
   }
 
   private parseBlockToForm(block: string): { blockNo?: string; plotNo?: string } {
@@ -207,5 +210,15 @@ export class AssetsPage implements OnInit {
     const plot = (data.plotNo || '').toString().trim();
     if (block && plot) return `${block}/${plot}`;
     return block || plot || '';
+  }
+
+  private async presentToast(message: string, color: 'success' | 'danger' | 'primary' | 'medium') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      color,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

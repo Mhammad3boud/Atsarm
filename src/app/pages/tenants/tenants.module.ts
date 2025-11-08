@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
 
 import { TenantsPageRoutingModule } from './tenants-routing.module';
-
 import { TenantsPage } from './tenants.page';
+import { AddTenantModalComponent } from './add-tenant-modal/add-tenant-modal.component';
 
 @NgModule({
   imports: [
@@ -15,6 +14,10 @@ import { TenantsPage } from './tenants.page';
     IonicModule,
     TenantsPageRoutingModule
   ],
-  declarations: [TenantsPage]
+  declarations: [
+    TenantsPage,
+    AddTenantModalComponent
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TenantsPageModule {}
