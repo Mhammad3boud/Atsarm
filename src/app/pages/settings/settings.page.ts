@@ -17,11 +17,18 @@ export class SettingsPage {
     private router: Router,
     private location: Location
   ) {
-    this.darkMode = document.body.classList.contains('dark');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      this.darkMode = savedTheme === 'dark';
+      document.body.classList.toggle('dark', this.darkMode);
+    } else {
+      this.darkMode = document.body.classList.contains('dark');
+    }
   }
 
   toggleDarkMode() {
     document.body.classList.toggle('dark', this.darkMode);
+    localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
   }
 
   goBack() {
@@ -44,7 +51,11 @@ export class SettingsPage {
         {
           text: 'Logout',
           handler: () => {
+            const theme = localStorage.getItem('theme');
             localStorage.clear();
+            if (theme) {
+              localStorage.setItem('theme', theme);
+            }
             this.router.navigate(['/login']);
           }
         }

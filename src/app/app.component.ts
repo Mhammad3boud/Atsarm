@@ -8,8 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor() {
-    document.body.classList.remove('dark');
-    document.body.classList.add('light');
+    const savedTheme = localStorage.getItem('theme');
+    const isDark = savedTheme === 'dark';
+    document.body.classList.remove('dark', 'light');
+    if (savedTheme) {
+      document.body.classList.add(isDark ? 'dark' : 'light');
+    } else {
+      document.body.classList.add('light');
+    }
   }
 
 }

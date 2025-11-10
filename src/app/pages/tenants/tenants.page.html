@@ -6,6 +6,10 @@
 
 <ion-content class="tenants-page">
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content color="primary" refreshing-spinner="crescent" pullingIcon="refresh"></ion-refresher-content>
+  </ion-refresher>
+
   <!-- HEADER -->
   <div class="header-section">
     <div>

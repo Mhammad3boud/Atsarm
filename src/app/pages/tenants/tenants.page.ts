@@ -82,6 +82,18 @@ export class TenantsPage implements OnInit {
     this.filteredTenants = [...this.tenants];
   }
 
+  doRefresh(event: any) {
+    // Reset filters to defaults
+    this.searchTerm = '';
+    this.selectedStatus = 'all';
+    // Recompute list (simulate fetching latest data)
+    this.filteredTenants = [...this.tenants];
+    setTimeout(() => {
+      this.filterTenants();
+      event.target.complete();
+    }, 400);
+  }
+
   filterTenants() {
     const term = this.searchTerm.toLowerCase();
     this.filteredTenants = this.tenants.filter((t) => {

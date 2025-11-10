@@ -1,19 +1,19 @@
 ion-content {
-  --background: #fff;
+  --background: var(--ion-background-color);
 
   p {
-    color: #555;
+    color: var(--ion-color-medium);
     margin-bottom: 1rem;
   }
 
   ion-item {
-    --background: #f8f8f8;
+    --background: var(--ion-item-background);
     border-radius: 6px;
     margin-bottom: 8px;
   }
 
   ion-button[color="success"] {
-    --background: #0a7b59;
-    --color: #fff;
+    --background: var(--ion-color-success);
+    --color: var(--ion-color-success-contrast, #fff);
   }
 }

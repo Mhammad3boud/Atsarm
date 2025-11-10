@@ -74,6 +74,19 @@ export class RentTrackingPage implements OnInit {
     this.filteredRecords = [...this.records];
   }
 
+  doRefresh(event: any) {
+    // Reset filters to defaults
+    this.searchTerm = '';
+    this.selectedStatus = 'all';
+    this.selectedMonth = 'all';
+    // Simulate fetch and recompute
+    this.filteredRecords = [...this.records];
+    setTimeout(() => {
+      this.filterRecords();
+      event.target.complete();
+    }, 400);
+  }
+
   filterRecords() {
     const term = this.searchTerm.toLowerCase();
 

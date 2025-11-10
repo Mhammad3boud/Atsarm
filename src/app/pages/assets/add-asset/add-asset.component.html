@@ -132,16 +132,26 @@
           <ion-input placeholder="Enter electricity meter number" [(ngModel)]="asset.electricityMeter"></ion-input>
         </ion-item>
       </ion-col>
+      <!-- GPS Controls -->
+      <ion-col size="12">
+        <ion-item lines="full">
+          <ion-label>GPS Coordinates</ion-label>
+          <ion-button slot="end" size="small" (click)="useCurrentLocation()" [disabled]="locating">
+            <ion-icon name="locate-outline" slot="start"></ion-icon>
+            {{ locating ? 'Locating...' : 'Locate' }}
+          </ion-button>
+        </ion-item>
+      </ion-col>
       <ion-col size="12" size-md="6">
         <ion-item>
           <ion-label position="stacked">GPS Latitude</ion-label>
-          <ion-input placeholder="Enter latitude" [(ngModel)]="asset.gpsLatitude"></ion-input>
+          <ion-input type="number" inputmode="decimal" step="any" placeholder="e.g. -6.792354" [(ngModel)]="asset.gpsLatitude"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col size="12" size-md="6">
         <ion-item>
           <ion-label position="stacked">GPS Longitude</ion-label>
-          <ion-input placeholder="Enter longitude" [(ngModel)]="asset.gpsLongitude"></ion-input>
+          <ion-input type="number" inputmode="decimal" step="any" placeholder="e.g. 39.208328" [(ngModel)]="asset.gpsLongitude"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>

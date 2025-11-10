@@ -168,10 +168,10 @@ ion-tab-button {
 }
 
 ion-refresher {
-  background: var(--ion-background-color) !important;
+  background: transparent !important;
 
   ion-refresher-content {
-    background: var(--ion-background-color) !important;
+    background: transparent !important;
     --spinner-color: var(--ion-color-primary);
 
     ion-icon {
