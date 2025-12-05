@@ -39,11 +39,15 @@
 
       <div class="two-cols">
         <ion-item lines="none">
-          <ion-label position="stacked">Lease Start Date</ion-label>
+          <ion-label position="stacked">Lease Start Date
+            <ion-icon name="calendar" size="small"></ion-icon>
+          </ion-label>
           <ion-input type="date" [(ngModel)]="leaseStartDate"></ion-input>
         </ion-item>
         <ion-item lines="none">
-          <ion-label position="stacked">Lease End Date</ion-label>
+          <ion-label position="stacked">Lease End Date
+            <ion-icon name="calendar" size="small"></ion-icon>
+          </ion-label>
           <ion-input type="date" [(ngModel)]="leaseEndDate"></ion-input>
         </ion-item>
       </div>
@@ -83,7 +87,6 @@
       </ion-button>
     </div>
 
-    <!-- RIGHT: Preview Section -->
     <div class="preview-section">
       <h2 class="section-title">Contract Preview</h2>
       <div class="preview-box">

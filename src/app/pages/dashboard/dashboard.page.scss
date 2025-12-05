@@ -3,15 +3,13 @@
   flex-direction: column;
   gap: 2px;
   padding: 2px;
+  padding-top: 25px;
 }
 
 .profile-card,
 .quick-actions {
   // keep cards consistent with theme card background
   background: var(--ion-item-background) !important;
-  border: none;
-  backdrop-filter: none;
-  box-shadow: none;
 }
 
 .profile-card {

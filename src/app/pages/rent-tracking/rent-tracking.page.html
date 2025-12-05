@@ -10,12 +10,11 @@
     <ion-refresher-content color="primary" refreshing-spinner="crescent" pullingIcon="refresh"></ion-refresher-content>
   </ion-refresher>
 
-  <!-- HEADER -->
   <div class="header-section">
-    <div>
+    <!-- <div>
       <h1>Rent Tracking</h1>
       <p>Monitor rent payments and collection</p>
-    </div>
+    </div> -->
 
     <ion-button color="success" shape="round" class="record-btn" (click)="openRecordPaymentModal()">
       <ion-icon slot="start" name="add-outline"></ion-icon>
@@ -23,31 +22,29 @@
     </ion-button>
   </div>
 
-  <!-- SUMMARY CARDS -->
   <div class="summary-cards">
     <div class="card" id="total">
       <h3>Total Revenue</h3>
-      <h2>$2,700</h2>
+      <h2>TZS 270,000</h2>
       <p>Collected this period</p>
     </div>
     <div class="card" id="pending">
       <h3>Pending Amount</h3>
-      <h2>$1,200</h2>
+      <h2>TZS 120,000</h2>
       <p>Awaiting payment</p>
     </div>
     <div class="card" id="overdue">
       <h3>Overdue Amount</h3>
-      <h2>$1,100</h2>
+      <h2>TZS 2,000,000</h2>
       <p>Requires attention</p>
     </div>
     <div class="card" id="active">
       <h3>Active Properties</h3>
-      <h2>3</h2>
+      <h2>5</h2>
       <p>Generating revenue</p>
     </div>
   </div>
 
-  <!-- FILTER BAR -->
   <div class="filter-section">
     <div class="search-box">
       <ion-icon name="search-outline"></ion-icon>
@@ -81,7 +78,6 @@
     </div>
   </div>
 
-  <!-- TABLE -->
   <div class="table-section">
     <h3>Rent Payment Records</h3>
     <p>Track and manage all rent payments</p>

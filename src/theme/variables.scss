@@ -159,6 +159,8 @@ ion-tab-bar {
   --background: var(--ion-toolbar-background);
   --color: var(--ion-text-color);
   --color-selected: var(--ion-color-primary);
+  padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 ion-tab-button {

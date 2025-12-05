@@ -10,12 +10,11 @@
     <ion-refresher-content color="primary" refreshing-spinner="crescent" pullingIcon="refresh"></ion-refresher-content>
   </ion-refresher>
 
-  <!-- HEADER -->
   <div class="header-section">
-    <div>
+    <!-- <div>
       <h1>Tenant Management</h1>
       <p>Manage your tenants and lease information</p>
-    </div>
+    </div> -->
 
     <ion-button color="success" shape="round" class="add-btn" (click)="openAddTenantModal()">
       <ion-icon slot="start" name="add-outline"></ion-icon>
@@ -23,7 +22,6 @@
     </ion-button>
   </div>
 
-  <!-- SEARCH + FILTER -->
   <div class="filter-section">
     <div class="search-box">
       <ion-icon name="search-outline"></ion-icon>
@@ -41,7 +39,6 @@
     </div>
   </div>
 
-  <!-- TENANT CARDS -->
   <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="4" *ngFor="let tenant of filteredTenants">

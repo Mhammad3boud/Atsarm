@@ -62,24 +62,33 @@
     <ion-row>
       <ion-col size="6">
         <ion-item>
-          <ion-label position="stacked">Lease Start Date</ion-label>
-          <ion-datetime presentation="date" [(ngModel)]="tenant.leaseStart"></ion-datetime>
+          <ion-label position="stacked">Lease Start Date
+            <ion-icon name="calendar"></ion-icon>
+          </ion-label>
+          <ion-input type="date" [(ngModel)]="tenant.leaseStart"></ion-input>
+          <!-- <ion-datetime presentation="date" [(ngModel)]="tenant.leaseStart"></ion-datetime> -->
         </ion-item>
       </ion-col>
 
       <ion-col size="6">
         <ion-item>
-          <ion-label position="stacked">Lease End Date</ion-label>
-          <ion-datetime presentation="date" [(ngModel)]="tenant.leaseEnd"></ion-datetime>
-        </ion-item>
+          <ion-label position="stacked">Lease End Date
+            <ion-icon name="calendar"></ion-icon>
+          </ion-label>
+          <ion-input type="date" [(ngModel)]="tenant.leaseEnd"></ion-input>
+          <!-- <ion-datetime presentation="date" [(ngModel)]="tenant.leaseEnd"></ion-datetime> -->
+        </ion-item>   
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="6">
         <ion-item>
-          <ion-label position="stacked">Renewal Reminder Date</ion-label>
-          <ion-datetime presentation="date" [(ngModel)]="tenant.renewalReminder"></ion-datetime>
+          <ion-label position="stacked">Renewal Reminder Date
+            <ion-icon name="calendar"></ion-icon>
+          </ion-label>
+          <ion-input type="date" [(ngModel)]="tenant.renewalReminder"></ion-input>
+          <!-- <ion-datetime presentation="date" [(ngModel)]="tenant.renewalReminder"></ion-datetime> -->
         </ion-item>
       </ion-col>
 

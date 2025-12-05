@@ -6,12 +6,11 @@
 
 <ion-content class="contracts-page">
 
-  <!-- HEADER -->
   <div class="header-section">
-    <div>
+    <!-- <div>
       <h1>Contract Generation</h1>
       <p>Generate and manage lease contracts</p>
-    </div>
+    </div> -->
 
     <ion-button color="success" shape="round" class="generate-btn" (click)="openGenerateContractModal()">
       <ion-icon slot="start" name="add-outline"></ion-icon>
@@ -19,7 +18,6 @@
     </ion-button>
   </div>
 
-  <!-- SEARCH BAR -->
   <div class="search-section">
     <ion-icon name="search-outline"></ion-icon>
     <input
@@ -30,7 +28,6 @@
     />
   </div>
 
-  <!-- CONTRACT CARDS -->
   <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="4" *ngFor="let contract of filteredContracts">
@@ -69,8 +66,8 @@
 
             <hr />
 
-            <p><strong>Monthly Rent:</strong> ${{ contract.rent }}</p>
-            <p><strong>Security Deposit:</strong> ${{ contract.deposit }}</p>
+            <p><strong>Monthly Rent:</strong> TZS {{ contract.rent }}</p>
+            <p><strong>Security Deposit:</strong> TZS {{ contract.deposit }}</p>
             <p><strong>Generated:</strong> {{ contract.generated }}</p>
 
             <div class="card-actions">
