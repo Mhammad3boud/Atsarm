@@ -181,3 +181,27 @@ ion-refresher {
     }
   }
 }
+
+.profile-image-modal {
+  --backdrop-opacity: 0.9;
+  --background: transparent;
+  --border-radius: 16px;
+  --height: auto;
+  --width: 90%;
+  --max-width: 500px;
+}
+
+.profile-image-modal::part(content) {
+  --background: transparent;
+  --box-shadow: none;
+  --padding: 0;
+}
+
+ion-modal.custom-asset-modal {
+  --width: 92vw;
+  --max-width: 760px;
+  --height: 90vh;
+  --max-height: 90vh;
+  --border-radius: 12px;
+  --box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}

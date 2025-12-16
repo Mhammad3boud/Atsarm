@@ -10,10 +10,24 @@
 </ion-header>
 
 <ion-content>
+  <div class="profile-section ion-text-center ion-padding">
+    <div class="profile-picture" (click)="changeProfilePicture()">
+      <img [src]="profilePicture || 'assets/icon/icon-512x512.png'" alt="Profile">
+      <ion-icon name="camera" class="camera-icon"></ion-icon>
+    </div>
+    <h2>{{ userName || 'User' }}</h2>
+  </div>
+
   <ion-card>
     <ion-card-content class="ion-no-padding">
       <ion-list lines="none">
+        <ion-item button (click)="changePassword()">
+          <ion-icon name="key-outline" slot="start"></ion-icon>
+          <ion-label>Change Password</ion-label>
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-item>
         <ion-item>
+          <ion-icon name="moon-outline" slot="start"></ion-icon>
           <ion-label>Dark Mode</ion-label>
           <ion-toggle [(ngModel)]="darkMode" (ionChange)="toggleDarkMode()" slot="end"></ion-toggle>
         </ion-item>
